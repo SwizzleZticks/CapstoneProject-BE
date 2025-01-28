@@ -207,3 +207,4 @@ __pycache__/
 obj
 bin
 Properties/launchSettings.json
+appsettings.json
