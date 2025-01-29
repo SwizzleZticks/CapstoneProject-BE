@@ -2,7 +2,7 @@
 
 namespace Capstone_BE.Models
 {
-    public class DayModel
+    public class Day
     {
         // List of Hourly weather
         [JsonPropertyName("hours")]
