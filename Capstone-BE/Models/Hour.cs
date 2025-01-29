@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Capstone_BE.Models
 {
-    public class Hourly
+    public class Hour
     {
         //High Temps
         [JsonPropertyName("tempmax")]
