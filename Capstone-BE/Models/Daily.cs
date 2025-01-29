@@ -2,11 +2,11 @@
 
 namespace Capstone_BE.Models
 {
-    public class Day
+    public class Daily
     {
         // List of Hourly weather
         [JsonPropertyName("hours")]
-        public List<Hour> HourlyWeatherDetails { get; set; } = new List<Hour>();
+        public List<Hourly> HourlyWeatherDetails { get; set; } = new List<Hourly>();
 
         // Date and Time
         [JsonPropertyName("datetime")]
