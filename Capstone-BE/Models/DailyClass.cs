@@ -4,7 +4,8 @@ namespace Capstone_BE.Models
 {
     public class DayModel
     {
-        // List of Hourly weather 
+        // List of Hourly weather
+        [JsonPropertyName("hours")]
         public List<HourlyModel> HourlyWeatherDetails { get; set; } = new List<HourlyModel>();
 
         // Date and Time
@@ -40,7 +41,7 @@ namespace Capstone_BE.Models
 
         // Humidity
         [JsonPropertyName("humidity")]
-        public int Humidity                     { get; set; }
+        public double Humidity                     { get; set; }
 
 
         // Conditions
