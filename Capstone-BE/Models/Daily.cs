@@ -6,7 +6,7 @@ namespace Capstone_BE.Models
     {
         // List of Hourly weather
         [JsonPropertyName("hours")]
-        public List<HourlyModel> HourlyWeatherDetails { get; set; } = new List<HourlyModel>();
+        public List<Hour> HourlyWeatherDetails { get; set; } = new List<Hour>();
 
         // Date and Time
         [JsonPropertyName("datetime")]
