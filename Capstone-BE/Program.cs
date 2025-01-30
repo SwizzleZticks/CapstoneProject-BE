@@ -30,11 +30,8 @@ namespace Capstone_BE
                               .AllowAnyHeader();
                     });
             });
-            builder.Services.AddHttpClient<WeatherService>(client =>
-            {
-                // Specify the base address for the HTTP client
-                client.BaseAddress = new Uri("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline");
-            });
+            builder.Services.AddHttpClient<WeatherService>();
+            builder.Services.AddScoped<WeatherService>();
 
             var app = builder.Build();
 
