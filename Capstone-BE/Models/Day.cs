@@ -12,7 +12,6 @@ namespace Capstone_BE.Models
         [JsonPropertyName("datetime")]
         public string DateTime                  {  get; set; } = null!;
 
-
         // High Temperature for the day
         [JsonPropertyName("tempmax")]
         public double HighTemp                  { get; set; }
@@ -20,8 +19,6 @@ namespace Capstone_BE.Models
         // Low Temperature for the day
         [JsonPropertyName("tempmin")]
         public double LowTemp                   { get; set; }
-
-
 
         // Feels Like
         [JsonPropertyName("feelslike")]
@@ -41,18 +38,15 @@ namespace Capstone_BE.Models
 
         // Humidity
         [JsonPropertyName("humidity")]
-        public double Humidity                     { get; set; }
-
+        public double Humidity                  { get; set; }
 
         // Conditions
         [JsonPropertyName("description")]        // can also do [JsonPropertyName("conditions")] for a shorter description
         public string DailyWeatherConditions    {  get; set; } = null!;
 
-
         // Precipitation %
         [JsonPropertyName("precipprob")]
         public double PrecipitationChance       {  get; set; }
-
     }
 
 }
