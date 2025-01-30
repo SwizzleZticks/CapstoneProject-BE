@@ -15,23 +15,23 @@ public class WeatherController : Controller
         _service = service;
     }
 
-    [HttpGet]
+    [HttpGet("daily")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<TimeLine>>GetTimeLineAsync([FromQuery] string location)
     {
         return Ok(await _service.GetSevenDayForecastAsync(location));
     }
 
-    [HttpGet]
+    [HttpGet("day")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<Day>> GetDayAsync([FromQuery] string location)
     {
         return Ok(await _service.GetDayForecastAsync(location));
     }
 
-    [HttpGet]
+    [HttpGet("hourly")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<TimeLine>> GetHourAsync([FromQuery] string location)
+    public async Task<ActionResult<Hour>> GetHourAsync([FromQuery] string location)
     {
         return Ok(await _service.GetHourlyForecastAsync(location));
     }
