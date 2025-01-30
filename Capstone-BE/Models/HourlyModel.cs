@@ -5,24 +5,25 @@ namespace Capstone_BE.Models
 {
     public class HourlyModel
     {
-        //High Temps
-        [JsonPropertyName("tempmax")]
-        public double HighTemp { get; set; }
+        // Temperature
+        [JsonPropertyName("temp")]
+        public double Temperature { get; set; }
 
-        // Low Temp
-        [JsonPropertyName("tempmin")]
-        public double LowTemp { get; set; }
+        // Feels Like Temperature
+        [JsonPropertyName("feelslike")]
+        public double FeelsLike { get; set; }
 
+        // Wind Speed
         [JsonPropertyName("windspeed")]
         public double WindSpeed { get; set; }
 
-        // Precipitation 
+        // Precipitation Probability
         [JsonPropertyName("precipprob")]
-        public int Precipitation { get; set; }
+        public double PrecipitationProbability { get; set; }
 
-        //Feels Like
-        [JsonPropertyName("feelslike")]
-        public int FeelsLike { get; set; }
-       
+        // Weather Conditions
+        [JsonPropertyName("conditions")]
+        public string Conditions { get; set; } = string.Empty;
+
     }
 }
