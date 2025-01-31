@@ -60,7 +60,6 @@ public partial class CapstoneDbContext : DbContext
                 .HasMaxLength(35)
                 .IsUnicode(false)
                 .HasColumnName("last_name");
-            entity.Property(e => e.LocationId).HasColumnName("locationId");
             entity.Property(e => e.Password)
                 .HasMaxLength(60)
                 .IsUnicode(false)
@@ -69,11 +68,13 @@ public partial class CapstoneDbContext : DbContext
                 .HasMaxLength(55)
                 .IsUnicode(false)
                 .HasColumnName("username");
-
-            entity.HasOne(d => d.Location).WithMany(p => p.Users)
-                .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__Users__locationI__4316F928");
         });
+
+
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Locations)
+            .WithOne()             
+            .HasForeignKey(l => l.LocationId);
 
         OnModelCreatingPartial(modelBuilder);
     }

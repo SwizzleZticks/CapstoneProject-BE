@@ -16,8 +16,5 @@ public partial class User
     public string? LastName { get; set; }
 
     public string? Email { get; set; }
-
-    public int? LocationId { get; set; }
-
-    public virtual Location? Location { get; set; }
+    public virtual ICollection<Location> Locations { get; set; } = new List<Location>();
 }
