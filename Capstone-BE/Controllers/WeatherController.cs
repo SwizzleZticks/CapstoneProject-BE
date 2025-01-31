@@ -3,10 +3,7 @@ using Capstone_BE.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone_BE.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class WeatherController : Controller
+public class WeatherController : BaseApiController
 {
     private readonly WeatherService _service;
 
