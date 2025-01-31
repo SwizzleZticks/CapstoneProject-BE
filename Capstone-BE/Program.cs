@@ -1,3 +1,4 @@
+using Capstone_BE.Extensions;
 using Capstone_BE.Models;
 using Capstone_BE.Services;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,9 @@ namespace Capstone_BE
             });
             builder.Services.AddHttpClient<WeatherService>();
             builder.Services.AddScoped<WeatherService>();
-
+            builder.Services.AddIdentityServices(builder.Configuration);
+            
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

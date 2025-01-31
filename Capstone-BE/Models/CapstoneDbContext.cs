@@ -20,13 +20,13 @@ public partial class CapstoneDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer($"Data Source={Environment.GetEnvironmentVariable("CONNECTION_STRING")};Initial Catalog=CapstoneDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=SWIZZ\\SQLEXPRESS;Initial Catalog=CapstoneDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__Location__30646B6EE32A0620");
+            entity.HasKey(e => e.LocationId).HasName("PK__Location__30646B6EFE37B25B");
 
             entity.Property(e => e.LocationId)
                 .ValueGeneratedNever()
@@ -43,7 +43,7 @@ public partial class CapstoneDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3213E83FDE93B678");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3213E83FD9756C82");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
@@ -61,6 +61,10 @@ public partial class CapstoneDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("last_name");
             entity.Property(e => e.LocationId).HasColumnName("locationId");
+            entity.Property(e => e.Password)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasColumnName("password");
             entity.Property(e => e.Username)
                 .HasMaxLength(55)
                 .IsUnicode(false)
@@ -68,7 +72,7 @@ public partial class CapstoneDbContext : DbContext
 
             entity.HasOne(d => d.Location).WithMany(p => p.Users)
                 .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__Users__locationI__398D8EEE");
+                .HasConstraintName("FK__Users__locationI__4316F928");
         });
 
         OnModelCreatingPartial(modelBuilder);
