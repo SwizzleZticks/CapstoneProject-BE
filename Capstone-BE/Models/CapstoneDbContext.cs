@@ -20,7 +20,7 @@ public partial class CapstoneDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=SWIZZ\\SQLEXPRESS;Initial Catalog=CapstoneDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer($"Data Source={Environment.GetEnvironmentVariable("CONNECTION_STRING")};Initial Catalog=CapstoneDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

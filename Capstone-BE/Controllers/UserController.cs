@@ -1,5 +1,6 @@
 ﻿using Capstone_BE.DTOs;
 using Capstone_BE.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,8 @@ namespace Capstone_BE.Controllers;
 
 public class UserController(CapstoneDbContext context) : BaseApiController
 {
-     [HttpGet]
+    [AllowAnonymous]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<UserDto>> GetUsersAsync()
     {
@@ -28,7 +30,7 @@ public class UserController(CapstoneDbContext context) : BaseApiController
         }
         return Ok(userDtos);
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
