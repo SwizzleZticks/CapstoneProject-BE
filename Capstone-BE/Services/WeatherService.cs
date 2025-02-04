@@ -9,10 +9,10 @@ namespace Capstone_BE.Services
         {
             BaseAddress = new Uri("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/")
         };
-        
+
         private readonly string _currentDate = DateTime.Now.ToString("yyyy-MM-dd");
         private readonly string _key = Environment.GetEnvironmentVariable("API_KEY");
-        
+
         public WeatherService()
         {
             if (string.IsNullOrEmpty(_key))
@@ -25,7 +25,6 @@ namespace Capstone_BE.Services
         {
             string endDate = AddDaysToCurrentDate();
             string requestUrl = $"{location}/{_currentDate}/{endDate}?key={_key}";
-            
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(requestUrl);
@@ -34,7 +33,6 @@ namespace Capstone_BE.Services
                 {
                     string json = await response.Content.ReadAsStringAsync();
                     var timeLineResponse = JsonSerializer.Deserialize<TimeLine>(json);
-                    
                     return timeLineResponse?.Days ?? new List<Day>();
                 }
                 else
@@ -60,7 +58,6 @@ namespace Capstone_BE.Services
                 {
                     string json = await response.Content.ReadAsStringAsync();
                     var timeLineResponse = JsonSerializer.Deserialize<TimeLine>(json);
-                    
                     var day = timeLineResponse?.Days.FirstOrDefault(d => d.DateTime.StartsWith(_currentDate));
 
                     return day ?? throw new Exception("No matching day found for the current date.");
@@ -79,7 +76,6 @@ namespace Capstone_BE.Services
         public async Task<List<Hour>> GetHourlyForecastAsync(string location)
         {
             string requestUrl = $"{location}/{_currentDate}?key={_key}";
-            
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(requestUrl);
@@ -88,9 +84,9 @@ namespace Capstone_BE.Services
                 {
                     string json = await response.Content.ReadAsStringAsync();
                     var timeLineResponse = JsonSerializer.Deserialize<TimeLine>(json);
-                    
+
                     var today = timeLineResponse?.Days.FirstOrDefault(d => d.DateTime.StartsWith(_currentDate));
-                    
+
                     return today?.HourlyWeatherDetails ?? new List<Hour>();
                 }
                 else
@@ -108,7 +104,6 @@ namespace Capstone_BE.Services
         {
             DateTime dateTime = DateTime.Parse(_currentDate);
             DateTime endDate = dateTime.AddDays(7);
-            
             return endDate.ToString("yyyy-MM-dd");
         }
     }
