@@ -26,7 +26,7 @@ public partial class CapstoneDbContext : DbContext
     {
         modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__Location__30646B6EE32A0620");
+            entity.HasKey(e => e.LocationId).HasName("PK__Location__30646B6EFE37B25B");
 
             entity.Property(e => e.LocationId)
                 .ValueGeneratedNever()
@@ -43,7 +43,7 @@ public partial class CapstoneDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3213E83FDE93B678");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3213E83FD9756C82");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
@@ -60,16 +60,21 @@ public partial class CapstoneDbContext : DbContext
                 .HasMaxLength(35)
                 .IsUnicode(false)
                 .HasColumnName("last_name");
-            entity.Property(e => e.LocationId).HasColumnName("locationId");
+            entity.Property(e => e.Password)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasColumnName("password");
             entity.Property(e => e.Username)
                 .HasMaxLength(55)
                 .IsUnicode(false)
                 .HasColumnName("username");
-
-            entity.HasOne(d => d.Location).WithMany(p => p.Users)
-                .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__Users__locationI__398D8EEE");
         });
+
+
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Locations)
+            .WithOne()             
+            .HasForeignKey(l => l.LocationId);
 
         OnModelCreatingPartial(modelBuilder);
     }

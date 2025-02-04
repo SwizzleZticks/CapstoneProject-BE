@@ -3,8 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace Capstone_BE.Models
 {
-    public class HourlyModel
+    public class Hour
     {
+        //Time
+        [JsonPropertyName("datetime")]
+        public string TimeOfDay { get; set; }
         // Temperature
         [JsonPropertyName("temp")]
         public double Temperature { get; set; }
