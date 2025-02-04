@@ -46,7 +46,7 @@ public partial class CapstoneDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3213E83FD9756C82");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.Email)
                 .HasMaxLength(35)
