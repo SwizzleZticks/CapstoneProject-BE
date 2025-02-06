@@ -16,5 +16,5 @@ public class RegisterDto
     [Required] 
     public required string   Email       { get; set; } = null!;
     [Required]
-    public required Location Location    { get; set; } = null!;
+    public required List<Location> Locations   { get; set; } = null!;
 }
